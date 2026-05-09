@@ -155,7 +155,7 @@ echo $response->getTotalTime() . "\\n";`;
           </h1>
           
           <p className="text-base sm:text-lg text-ink-muted leading-relaxed max-w-md mb-8">
-            Build REST calls with a fluent API, smart parsing, async and parallel helpers, transport diagnostics, and PSR-3 / PSR-7 / PSR-17 / PSR-18 support.
+            Build REST calls with a fluent API, smart parsing, async and parallel helpers, transfer metadata, and PSR-3 / PSR-7 / PSR-17 / PSR-18 support.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
