@@ -57,13 +57,13 @@ If you need to deploy the site under a different subpath, create a local `.env` 
 
 ## Key files
 
-- `/home/runner/work/httpful_docs/httpful_docs/src/App.tsx` — landing page content and documentation sections
-- `/home/runner/work/httpful_docs/httpful_docs/src/index.css` — theme tokens and shared styling
-- `/home/runner/work/httpful_docs/httpful_docs/index.html` — favicon, SEO metadata, and Open Graph tags
-- `/home/runner/work/httpful_docs/httpful_docs/vite.config.ts` — Vite config and GitHub Pages base path handling
-- `/home/runner/work/httpful_docs/httpful_docs/public/favicon.svg` — site favicon
-- `/home/runner/work/httpful_docs/httpful_docs/public/social-preview.svg` — social sharing preview asset
-- `/home/runner/work/httpful_docs/httpful_docs/.github/workflows/deploy.yml` — automatic GitHub Pages deployment workflow
+- `src/App.tsx` — landing page content and documentation sections
+- `src/index.css` — theme tokens and shared styling
+- `index.html` — favicon, SEO metadata, and Open Graph tags
+- `vite.config.ts` — Vite config and GitHub Pages base path handling
+- `public/favicon.svg` — site favicon
+- `public/social-preview.svg` — social sharing preview asset
+- `.github/workflows/deploy.yml` — automatic GitHub Pages deployment workflow
 
 ## Key Files Detector helper prompt
 
