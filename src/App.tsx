@@ -76,7 +76,7 @@ function Nav() {
         <div className="w-8 h-8 bg-accent rounded flex items-center justify-center text-bg-primary font-black text-xl">H</div>
         <span className="font-display text-lg font-bold tracking-tight text-ink italic sm:text-xl">Httpful (fork)</span>
       </div>
-      <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-medium tracking-wide uppercase opacity-70 sm:justify-end sm:gap-6 sm:text-sm lg:gap-8">
+      <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-medium tracking-wide uppercase text-ink-muted sm:justify-end sm:gap-6 sm:text-sm lg:gap-8">
         <a href="https://github.com/voku/httpful" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 transition-colors">
           GitHub
         </a>
@@ -161,7 +161,7 @@ if ($response->isSuccess()) {
               Get Started
             </a>
             
-            <div className="w-full px-5 py-4 bg-ink/5 border border-ink/10 flex items-center gap-3 font-mono text-sm max-w-full overflow-x-auto sm:w-auto">
+            <div className="w-full px-5 py-4 bg-ink/5 border border-ink/10 flex items-center gap-3 font-mono text-sm overflow-x-auto sm:w-auto">
               <span className="opacity-40 mr-3 shrink-0">$</span> 
               <span className="text-ink shrink-0">composer require voku/httpful</span>
               <button 
