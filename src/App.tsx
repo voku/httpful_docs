@@ -57,7 +57,11 @@ function getFeatureCardClasses(index: number, total: number) {
 }
 
 function getTabButtonClasses(isActive: boolean) {
-  const baseClasses = 'text-left px-4 py-3 sm:px-5 sm:py-4 transition-all whitespace-nowrap lg:whitespace-normal shrink-0 border-b-2 lg:border-b-0 lg:border-l-2';
+  const baseClasses = [
+    'text-left whitespace-nowrap lg:whitespace-normal shrink-0 transition-all',
+    'px-4 py-3 sm:px-5 sm:py-4',
+    'border-b-2 lg:border-b-0 lg:border-l-2',
+  ].join(' ');
   const stateClasses = isActive
     ? 'border-accent bg-accent/10 text-ink font-semibold'
     : 'border-transparent text-ink-muted hover:border-border hover:text-ink hover:bg-black/5';
