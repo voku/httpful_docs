@@ -23,7 +23,7 @@ import {
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-bg-primary text-ink font-sans selection:bg-accent selection:text-bg-primary flex flex-col">
+    <div className="min-h-screen bg-bg-primary text-ink font-sans selection:bg-accent selection:text-bg-primary flex flex-col overflow-x-hidden">
       <Nav />
       
       <main className="flex-1 flex flex-col relative z-10">
@@ -42,14 +42,41 @@ export default function App() {
 
 // Components will be defined below
 
+function getFeatureCardClasses(index: number, total: number) {
+  const isLastRowOnMobile = index === total - 1;
+  const isLastColumnOnTablet = index % 2 === 1;
+  const isLastColumnOnDesktop = index % 4 === 3;
+
+  return [
+    'p-6 sm:p-8 flex flex-col gap-3 group hover:bg-black/5 transition-colors min-h-[160px] justify-center',
+    'border-border',
+    !isLastRowOnMobile && 'border-b',
+    isLastColumnOnTablet ? 'sm:border-r-0' : 'sm:border-r',
+    isLastColumnOnDesktop ? 'lg:border-r-0' : 'lg:border-r',
+  ].filter(Boolean).join(' ');
+}
+
+function getTabButtonClasses(isActive: boolean) {
+  const baseClasses = [
+    'text-left whitespace-nowrap lg:whitespace-normal shrink-0 transition-all',
+    'px-4 py-3 sm:px-5 sm:py-4',
+    'border-b-2 lg:border-b-0 lg:border-l-2',
+  ].join(' ');
+  const stateClasses = isActive
+    ? 'border-accent bg-accent/10 text-ink font-semibold'
+    : 'border-transparent text-ink-muted hover:border-border hover:text-ink hover:bg-black/5';
+
+  return `${baseClasses} ${stateClasses}`;
+}
+
 function Nav() {
   return (
-    <nav className="relative z-20 flex justify-between items-center px-6 lg:px-12 py-8 border-b border-border">
-      <div className="flex items-center gap-2">
+    <nav className="relative z-20 flex flex-col gap-4 px-4 py-6 border-b border-border sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-12 sm:py-8">
+      <div className="flex items-center gap-2 text-center sm:text-left">
         <div className="w-8 h-8 bg-accent rounded flex items-center justify-center text-bg-primary font-black text-xl">H</div>
-        <span className="font-display font-bold text-xl tracking-tight text-ink italic">Httpful (fork)</span>
+        <span className="font-display text-lg font-bold tracking-tight text-ink italic sm:text-xl">Httpful (fork)</span>
       </div>
-      <div className="flex items-center gap-6 lg:gap-8 text-sm font-medium tracking-wide uppercase opacity-70">
+      <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-medium tracking-wide uppercase text-ink sm:justify-end sm:gap-6 sm:text-sm lg:gap-8">
         <a href="https://github.com/voku/httpful" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 transition-colors">
           GitHub
         </a>
@@ -107,7 +134,7 @@ if ($response->isSuccess()) {
 }`;
 
   return (
-    <section className="flex-1 grid lg:grid-cols-2 gap-12 px-6 lg:px-12 py-16 lg:py-24 items-center max-w-[1400px] mx-auto w-full">
+    <section className="flex-1 grid items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-2 lg:gap-12 lg:px-12 lg:py-24 max-w-[1400px] mx-auto w-full">
       <div className="space-y-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -118,11 +145,11 @@ if ($response->isSuccess()) {
             Readable cURL for PHP
           </div>
           
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.9] text-ink mb-6">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.9] text-ink mb-6">
             Stop writing <br className="hidden sm:block" /><span className="text-accent">cURL soup.</span>
           </h1>
           
-          <p className="text-lg text-ink-muted leading-relaxed max-w-md mb-8">
+          <p className="text-base sm:text-lg text-ink-muted leading-relaxed max-w-md mb-8">
             Build REST calls with a chainable API, smart MIME parsing, retries, parallel requests, async helpers, transfer diagnostics, and PSR compatibility.
           </p>
           
@@ -134,9 +161,9 @@ if ($response->isSuccess()) {
               Get Started
             </a>
             
-            <div className="px-6 py-4 bg-ink/5 border border-ink/10 flex items-center font-mono text-sm max-w-full overflow-x-auto">
+            <div className="w-full px-5 py-4 bg-ink/5 border border-ink/10 flex items-center gap-3 font-mono text-sm overflow-x-auto sm:w-auto">
               <span className="opacity-40 mr-3 shrink-0">$</span> 
-              <span className="text-ink shrink-0 mr-4">composer require voku/httpful</span>
+              <span className="text-ink shrink-0">composer require voku/httpful</span>
               <button 
                 onClick={() => navigator.clipboard.writeText('composer require voku/httpful')}
                 className="text-ink-muted hover:text-ink transition-colors shrink-0 ml-auto"
@@ -155,14 +182,14 @@ if ($response->isSuccess()) {
         transition={{ duration: 0.7, delay: 0.2 }}
         className="relative"
       >
-        <div className="bg-bg-secondary rounded-xl border border-border shadow-2xl p-6 relative">
+        <div className="bg-bg-secondary rounded-xl border border-border shadow-2xl p-4 sm:p-6 relative">
           <div className="flex gap-1.5 mb-6 opacity-30">
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
             <div className="w-3 h-3 rounded-full bg-accent"></div>
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
           </div>
           <CodeBlock code={heroCode} />
-          <div className="absolute -bottom-4 right-4 lg:-right-4 bg-accent text-bg-primary px-4 py-3 text-xs font-black uppercase tracking-tighter rounded shadow-lg">
+          <div className="absolute -bottom-4 right-3 sm:right-4 lg:-right-4 bg-accent text-bg-primary px-4 py-3 text-xs font-black uppercase tracking-tighter rounded shadow-lg">
             Chainable API
           </div>
         </div>
@@ -173,10 +200,10 @@ if ($response->isSuccess()) {
 
 function WhySection() {
   return (
-    <section className="py-24 px-6 relative border-t border-b border-border bg-bg-secondary">
+    <section className="px-4 py-16 sm:px-6 sm:py-24 relative border-t border-b border-border bg-bg-secondary">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="font-display text-4xl font-bold mb-6 text-ink tracking-tighter">Why Httpful (fork)?</h2>
-        <p className="text-xl text-ink-muted leading-relaxed max-w-3xl mx-auto">
+        <h2 className="font-display text-3xl sm:text-4xl font-bold mb-6 text-ink tracking-tighter">Why Httpful (fork)?</h2>
+        <p className="text-lg sm:text-xl text-ink-muted leading-relaxed max-w-3xl mx-auto">
           Raw cURL is powerful but noisy. Many HTTP clients are clean but abstract away the useful cURL controls. Httpful (fork) sits in the practical middle: readable request code with access to the knobs you need in real systems.
         </p>
       </div>
@@ -224,7 +251,7 @@ function FeatureGrid() {
     <section className="border-y border-border overflow-hidden bg-bg-primary">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {features.map((f, i) => (
-          <div key={i} className="p-8 border-b border-border border-r lg:[&:nth-child(4n)]:border-r-0 sm:max-lg:[&:nth-child(2n)]:border-r-0 flex flex-col gap-3 group hover:bg-black/5 transition-colors min-h-[160px] justify-center">
+          <div key={i} className={getFeatureCardClasses(i, features.length)}>
             <h3 className="text-accent font-bold uppercase text-[11px] tracking-widest">{f.title}</h3>
             <p className="text-xs text-ink-muted leading-relaxed">{f.desc}</p>
           </div>
@@ -236,18 +263,18 @@ function FeatureGrid() {
 
 function ComparisonSection() {
   return (
-    <section className="py-24 px-6 border-b border-border bg-bg-secondary">
+    <section className="px-4 py-16 sm:px-6 sm:py-24 border-b border-border bg-bg-secondary">
       <div className="max-w-5xl mx-auto">
         <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border border border-border rounded-xl overflow-hidden shadow-xl">
-          <div className="p-10 flex flex-col items-center text-center bg-bg-primary">
+          <div className="p-8 sm:p-10 flex flex-col items-center text-center bg-bg-primary">
             <h3 className="font-bold uppercase text-[11px] tracking-widest mb-4 text-ink-muted">Raw cURL</h3>
             <p className="text-ink-muted/70 text-sm">Powerful, but verbose.</p>
           </div>
-          <div className="p-10 flex flex-col items-center text-center bg-bg-primary">
+          <div className="p-8 sm:p-10 flex flex-col items-center text-center bg-bg-primary">
             <h3 className="font-bold uppercase text-[11px] tracking-widest mb-4 text-ink-muted">Generic PSR client</h3>
             <p className="text-ink-muted/70 text-sm">Portable, but ceremony-heavy.</p>
           </div>
-          <div className="p-10 flex flex-col items-center text-center bg-accent/5">
+          <div className="p-8 sm:p-10 flex flex-col items-center text-center bg-accent/5">
             <h3 className="font-bold uppercase text-[11px] tracking-widest mb-4 text-accent">Httpful (fork)</h3>
             <p className="text-ink text-sm">Readable API with practical cURL-level controls.</p>
           </div>
@@ -662,23 +689,19 @@ function CodeTabsSection() {
   const activeData = TABS.find(t => t.id === activeTab)!;
 
   return (
-    <section id="examples" className="py-32 px-6 max-w-7xl mx-auto w-full">
+    <section id="examples" className="px-4 py-20 sm:px-6 sm:py-32 max-w-7xl mx-auto w-full">
       <div className="text-center mb-16">
         <h2 className="font-display text-4xl sm:text-5xl font-bold mb-6 text-ink tracking-tighter">See it in action.</h2>
         <p className="text-ink-muted text-lg">Clean, readable, and powerful. Explore the patterns.</p>
       </div>
       
-      <div className="grid lg:grid-cols-[250px_1fr] gap-8 xl:gap-16">
+      <div className="grid gap-6 lg:grid-cols-[250px_1fr] lg:gap-8 xl:gap-16">
         <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto pb-4 lg:pb-0 scrollbar-hide">
           {TABS.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`text-left px-5 py-4 transition-all whitespace-nowrap lg:whitespace-normal shrink-0 border-l-2 ${
-                activeTab === tab.id 
-                  ? 'border-accent bg-accent/10 text-ink font-semibold' 
-                  : 'border-transparent text-ink-muted hover:border-border hover:text-ink hover:bg-black/5'
-              }`}
+              className={getTabButtonClasses(activeTab === tab.id)}
             >
               {tab.name}
             </button>
@@ -695,7 +718,7 @@ function CodeTabsSection() {
               transition={{ duration: 0.2 }}
               className="h-full flex flex-col"
             >
-              <div className="mb-8 p-6 bg-black/5 border border-border rounded-xl">
+              <div className="mb-6 sm:mb-8 p-5 sm:p-6 bg-black/5 border border-border rounded-xl">
                 <p className="text-sm leading-relaxed text-ink-muted">{activeData.desc}</p>
               </div>
               <div className="flex-1 bg-bg-secondary border border-border p-2 relative shadow-lg rounded-xl overflow-hidden">
@@ -714,19 +737,19 @@ function CodeTabsSection() {
 
 function CTASection() {
   return (
-    <section className="py-32 px-6 border-y border-border bg-bg-secondary">
+    <section className="px-4 py-20 sm:px-6 sm:py-32 border-y border-border bg-bg-secondary">
       <div className="max-w-4xl mx-auto text-center relative">
-        <h2 className="font-display text-5xl font-bold mb-6 text-ink tracking-tighter">Start building better.</h2>
-        <p className="text-xl text-ink-muted mb-12 max-w-2xl mx-auto">
+        <h2 className="font-display text-4xl sm:text-5xl font-bold mb-6 text-ink tracking-tighter">Start building better.</h2>
+        <p className="text-lg sm:text-xl text-ink-muted mb-10 sm:mb-12 max-w-2xl mx-auto">
           Use it when you want readable HTTP calls without giving up cURL's useful low-level controls.
         </p>
         
         <div className="flex flex-col items-center gap-6">
-          <div className="flex items-center justify-between gap-8 bg-bg-primary px-6 py-4 border border-border font-mono text-sm w-full max-w-md shadow-2xl">
+          <div className="flex w-full max-w-md flex-col items-stretch gap-3 bg-bg-primary px-5 py-4 border border-border font-mono text-sm shadow-2xl sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:px-6">
             <span className="text-ink truncate">composer require voku/httpful</span>
             <button 
               onClick={() => navigator.clipboard.writeText('composer require voku/httpful')}
-              className="text-accent hover:text-accent-dim transition-colors shrink-0 uppercase text-[10px] tracking-widest font-bold"
+              className="min-h-11 px-3 py-2 text-accent hover:text-accent-dim transition-colors shrink-0 uppercase text-[10px] tracking-widest font-bold"
               title="Copy to clipboard"
             >
               Copy
@@ -755,4 +778,3 @@ function Footer() {
     </footer>
   );
 }
-
