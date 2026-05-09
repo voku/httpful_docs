@@ -151,7 +151,7 @@ echo $response->getTotalTime() . "\\n";`;
           </h1>
           
           <p className="text-base sm:text-lg text-ink-muted leading-relaxed max-w-md mb-8">
-            Build REST calls with a readable chainable API, smart parsing, async and parallel helpers, transport diagnostics, and PSR-3 / PSR-7 / PSR-17 / PSR-18 support.
+            Build REST calls with a fluent API, smart parsing, async and parallel helpers, transport diagnostics, and PSR-3 / PSR-7 / PSR-17 / PSR-18 support.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -191,7 +191,7 @@ echo $response->getTotalTime() . "\\n";`;
           </div>
           <CodeBlock code={heroCode} />
             <div className="absolute -bottom-4 right-3 sm:right-4 lg:-right-4 bg-accent text-bg-primary px-4 py-3 text-xs font-black uppercase tracking-tighter rounded shadow-lg">
-              Retry + TLS
+              Retry + Transport
             </div>
           </div>
         </motion.div>
@@ -244,7 +244,7 @@ function FeatureGrid() {
     },
     {
       title: "PSR compatibility",
-      desc: "PSR-3, PSR-7, PSR-17 and PSR-18 interfaces with transfer metadata helpers."
+      desc: "PSR-3 / PSR-7 / PSR-17 / PSR-18 interfaces with transfer metadata helpers."
     }
   ];
 
@@ -296,7 +296,7 @@ declare(strict_types=1);
 
 // JSON Example via GitHub-API
 
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 $uri = 'https://api.github.com/users/voku';
 $response = \\Httpful\\Client::get_request($uri)
@@ -316,7 +316,7 @@ echo $result['name'] . ' joined GitHub on ' . \\date('M jS Y', \\strtotime($resu
 
 declare(strict_types=1);
 
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 // ------------------- SHORT VERSION
 
@@ -372,7 +372,7 @@ use Httpful\\Handlers\\XmlMimeHandler;
 use Httpful\\Mime;
 use Httpful\\Setup;
 
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 // Example setting a namespace for the XMLHandler parser
 $conf = ['namespace' => 'http://example.com'];
@@ -407,7 +407,7 @@ Setup::registerMimeHandler(Mime::CSV, new SimpleCsvMimeHandler());`
 
 declare(strict_types=1);
 
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 function scraping_imdb(string $url): array
 {
@@ -422,7 +422,11 @@ function scraping_imdb(string $url): array
     $dom = $response->getRawBody();
 
     $return['Title'] = $dom->find('title', 0)->innertext;
-    $return['Rating'] = $dom->find('.ratingValue strong', 0)->getAttribute('title');
+
+    $rating = $dom->find('.ratingValue strong', 0);
+    if ($rating) {
+        $return['Rating'] = $rating->getAttribute('title');
+    }
 
     return $return;
 }
@@ -443,7 +447,7 @@ declare(strict_types=1);
 
 use Httpful\\Mime;
 
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 $uri = 'https://www.w3schools.com/xml/note.xml';
 
@@ -538,7 +542,7 @@ function CodeTabsSection() {
   return (
     <section id="examples" className="px-4 py-20 sm:px-6 sm:py-32 max-w-7xl mx-auto w-full">
       <div className="text-center mb-16">
-        <h2 className="font-display text-4xl sm:text-5xl font-bold mb-6 text-ink tracking-tighter">Examples from the library.</h2>
+        <h2 className="font-display text-4xl sm:text-5xl font-bold mb-6 text-ink tracking-tighter">Examples from the library</h2>
         <p className="text-ink-muted text-lg">Synced with the current README, changelog, and shipped example files.</p>
       </div>
       
@@ -588,7 +592,7 @@ function CTASection() {
       <div className="max-w-4xl mx-auto text-center relative">
         <h2 className="font-display text-4xl sm:text-5xl font-bold mb-6 text-ink tracking-tighter">Start building better.</h2>
         <p className="text-lg sm:text-xl text-ink-muted mb-10 sm:mb-12 max-w-2xl mx-auto">
-          Use it when you want readable HTTP calls without giving up cURL&apos;s useful low-level controls. Httpful currently targets PHP 8.0+.
+          Use it when you want readable HTTP calls without giving up cURL&apos;s useful low-level controls. Requires PHP 8.0+.
         </p>
         
         <div className="flex flex-col items-center gap-6">
