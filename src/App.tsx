@@ -70,7 +70,7 @@ function getTabButtonClasses(isActive: boolean) {
 }
 
 function getExampleFilename(name: string) {
-  return `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.php`;
+  return `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}.php`;
 }
 
 function Nav() {
@@ -209,7 +209,7 @@ function WhySection() {
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="font-display text-3xl sm:text-4xl font-bold mb-6 text-ink tracking-tighter">Why Httpful (fork)?</h2>
         <p className="text-lg sm:text-xl text-ink-muted leading-relaxed max-w-3xl mx-auto">
-          Forked from nategood/httpful and extended with async requests, parallel execution, modern transport helpers, and PSR HTTP interfaces. It keeps cURL&apos;s practical controls without making every request read like low-level setup code.
+          Forked from nategood/httpful and extended with async requests, parallel execution, modern transport helpers, and PSR HTTP interfaces. It keeps cURL's practical controls without making every request read like low-level setup code.
         </p>
       </div>
     </section>
@@ -597,7 +597,7 @@ function CTASection() {
       <div className="max-w-4xl mx-auto text-center relative">
         <h2 className="font-display text-4xl sm:text-5xl font-bold mb-6 text-ink tracking-tighter">Start building better.</h2>
         <p className="text-lg sm:text-xl text-ink-muted mb-10 sm:mb-12 max-w-2xl mx-auto">
-          Use it when you want readable HTTP calls without giving up cURL&apos;s useful low-level controls. Requires PHP 8.0+.
+          Use it when you want readable HTTP calls without giving up cURL's useful low-level controls. Requires PHP 8.0+.
         </p>
         
         <div className="flex flex-col items-center gap-6">
