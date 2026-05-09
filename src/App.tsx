@@ -440,7 +440,7 @@ foreach ($data as $k => $v) {
   {
     id: "xml",
     name: "XML Request",
-    desc: "examples/xml.php compares the complex, medium, and shortcut client styles against the same XML resource.",
+    desc: "examples/xml.php compares the complex, medium, and shortcut client styles; this docs version adds the missing URI on the complex request so the sample is actually runnable on the current fork.",
     code: `<?php
 
 declare(strict_types=1);
@@ -458,7 +458,8 @@ $responseComplex = (new \\Httpful\\Client())
                 \\Httpful\\Http::GET,
                 Mime::PLAIN
             )
-        )->followRedirects()
+        )->withUriFromString($uri)
+            ->followRedirects()
     );
 
 $responseMedium = \\Httpful\\Client::get_request($uri)
@@ -543,7 +544,7 @@ function CodeTabsSection() {
     <section id="examples" className="px-4 py-20 sm:px-6 sm:py-32 max-w-7xl mx-auto w-full">
       <div className="text-center mb-16">
         <h2 className="font-display text-4xl sm:text-5xl font-bold mb-6 text-ink tracking-tighter">Examples from the library</h2>
-        <p className="text-ink-muted text-lg">Synced with the current README, changelog, and shipped example files.</p>
+        <p className="text-ink-muted text-lg">Synced with the current README, changelog, and shipped example files, with broken snippets corrected for the current fork.</p>
       </div>
       
       <div className="grid gap-6 lg:grid-cols-[250px_1fr] lg:gap-8 xl:gap-16">
@@ -574,7 +575,7 @@ function CodeTabsSection() {
               </div>
               <div className="flex-1 bg-bg-secondary border border-border p-2 relative shadow-lg rounded-xl overflow-hidden">
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-border/50">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-ink-muted">{activeData.name.toLowerCase().replace(' ', '_')}.php</span>
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-ink-muted">{activeData.id}.php</span>
                 </div>
                 <CodeBlock code={activeData.code} />
               </div>
