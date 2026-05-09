@@ -544,7 +544,7 @@ function CodeTabsSection() {
     <section id="examples" className="px-4 py-20 sm:px-6 sm:py-32 max-w-7xl mx-auto w-full">
       <div className="text-center mb-16">
         <h2 className="font-display text-4xl sm:text-5xl font-bold mb-6 text-ink tracking-tighter">Examples from the library</h2>
-        <p className="text-ink-muted text-lg">Synced with the current README, changelog, and shipped example files, with broken snippets corrected for the current fork.</p>
+        <p className="text-ink-muted text-lg">Synced with the current README, changelog, and shipped example files, including an XML example fix for the current fork.</p>
       </div>
       
       <div className="grid gap-6 lg:grid-cols-[250px_1fr] lg:gap-8 xl:gap-16">
