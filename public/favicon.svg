@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Httpful favicon</title>
+  <desc id="desc">Orange tile with a bold H for Httpful.</desc>
+  <rect width="64" height="64" rx="14" fill="#111827" />
+  <rect x="8" y="8" width="48" height="48" rx="10" fill="#d97706" />
+  <path d="M22 18h6v11h8V18h6v28h-6V35h-8v11h-6z" fill="#fff" />
+</svg>
