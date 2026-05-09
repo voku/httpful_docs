@@ -443,7 +443,7 @@ Setup::registerMimeHandler('text/csv', new CsvMimeHandler());`
 declare(strict_types=1);
 
 use Httpful\\Request;
-use Httpful\\Exception\\ConnectionErrorException;
+use Httpful\\Exception\\NetworkErrorException;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -461,7 +461,7 @@ try {
             \\print_r($diagnostics, true)
         );
     }
-} catch (ConnectionErrorException $e) {
+} catch (NetworkErrorException $e) {
     // Centralized connection error handling
     \\error_log("Connection failed: " . $e->getMessage());
     throw $e;

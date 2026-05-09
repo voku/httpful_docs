@@ -1,6 +1,6 @@
 {
   "name": "Httpful (fork)",
-  "description": "Readable cURL power for PHP: chainable REST calls, smart parsing, PSR compatibility, retries, async, parallel requests, and low-level transfer control without writing raw cURL spaghetti.",
+  "description": "Readable cURL power for PHP with chainable REST calls, smart parsing, async and parallel helpers, retry and TLS controls, and PSR-3 / PSR-7 / PSR-17 / PSR-18 support.",
   "requestFramePermissions": [],
   "majorCapabilities": []
 }
