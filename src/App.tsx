@@ -50,7 +50,7 @@ function getFeatureCardClasses(index: number, total: number) {
   return [
     'p-6 sm:p-8 flex flex-col gap-3 group hover:bg-black/5 transition-colors min-h-[160px] justify-center',
     'border-border',
-    isLastRowOnMobile ? '' : 'border-b',
+    !isLastRowOnMobile && 'border-b',
     isLastColumnOnTablet ? 'sm:border-r-0' : 'sm:border-r',
     isLastColumnOnDesktop ? 'lg:border-r-0' : 'lg:border-r',
   ].filter(Boolean).join(' ');
@@ -76,7 +76,7 @@ function Nav() {
         <div className="w-8 h-8 bg-accent rounded flex items-center justify-center text-bg-primary font-black text-xl">H</div>
         <span className="font-display text-lg font-bold tracking-tight text-ink italic sm:text-xl">Httpful (fork)</span>
       </div>
-      <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-medium tracking-wide uppercase text-ink-muted sm:justify-end sm:gap-6 sm:text-sm lg:gap-8">
+      <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-medium tracking-wide uppercase text-ink sm:justify-end sm:gap-6 sm:text-sm lg:gap-8">
         <a href="https://github.com/voku/httpful" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 transition-colors">
           GitHub
         </a>
