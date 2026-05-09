@@ -69,6 +69,10 @@ function getTabButtonClasses(isActive: boolean) {
   return `${baseClasses} ${stateClasses}`;
 }
 
+function getExampleFilename(name: string) {
+  return `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.php`;
+}
+
 function Nav() {
   return (
     <nav className="relative z-20 flex flex-col gap-4 px-4 py-6 border-b border-border sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-12 sm:py-8">
@@ -575,7 +579,7 @@ function CodeTabsSection() {
               </div>
               <div className="flex-1 bg-bg-secondary border border-border p-2 relative shadow-lg rounded-xl overflow-hidden">
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-border/50">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-ink-muted">{activeData.id}.php</span>
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-ink-muted">{getExampleFilename(activeData.name)}</span>
                 </div>
                 <CodeBlock code={activeData.code} />
               </div>
