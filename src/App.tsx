@@ -749,7 +749,7 @@ function CTASection() {
             <span className="text-ink truncate">composer require voku/httpful</span>
             <button 
               onClick={() => navigator.clipboard.writeText('composer require voku/httpful')}
-              className="text-accent hover:text-accent-dim transition-colors shrink-0 uppercase text-[10px] tracking-widest font-bold"
+              className="min-h-11 px-3 py-2 text-accent hover:text-accent-dim transition-colors shrink-0 uppercase text-[10px] tracking-widest font-bold"
               title="Copy to clipboard"
             >
               Copy
