@@ -42,6 +42,29 @@ export default function App() {
 
 // Components will be defined below
 
+function getFeatureCardClasses(index: number, total: number) {
+  const isLastRowOnMobile = index === total - 1;
+  const isLastColumnOnTablet = index % 2 === 1;
+  const isLastColumnOnDesktop = index % 4 === 3;
+
+  return [
+    'p-6 sm:p-8 flex flex-col gap-3 group hover:bg-black/5 transition-colors min-h-[160px] justify-center',
+    'border-border',
+    isLastRowOnMobile ? '' : 'border-b',
+    isLastColumnOnTablet ? 'sm:border-r-0' : 'sm:border-r',
+    isLastColumnOnDesktop ? 'lg:border-r-0' : 'lg:border-r',
+  ].filter(Boolean).join(' ');
+}
+
+function getTabButtonClasses(isActive: boolean) {
+  const baseClasses = 'text-left px-4 py-3 sm:px-5 sm:py-4 transition-all whitespace-nowrap lg:whitespace-normal shrink-0 border-b-2 lg:border-b-0 lg:border-l-2';
+  const stateClasses = isActive
+    ? 'border-accent bg-accent/10 text-ink font-semibold'
+    : 'border-transparent text-ink-muted hover:border-border hover:text-ink hover:bg-black/5';
+
+  return `${baseClasses} ${stateClasses}`;
+}
+
 function Nav() {
   return (
     <nav className="relative z-20 flex flex-col gap-4 px-4 py-6 border-b border-border sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-12 sm:py-8">
@@ -224,7 +247,7 @@ function FeatureGrid() {
     <section className="border-y border-border overflow-hidden bg-bg-primary">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {features.map((f, i) => (
-          <div key={i} className="p-6 sm:p-8 border-b border-border sm:border-r lg:[&:nth-child(4n)]:border-r-0 sm:max-lg:[&:nth-child(2n)]:border-r-0 flex flex-col gap-3 group hover:bg-black/5 transition-colors min-h-[160px] justify-center">
+          <div key={i} className={getFeatureCardClasses(i, features.length)}>
             <h3 className="text-accent font-bold uppercase text-[11px] tracking-widest">{f.title}</h3>
             <p className="text-xs text-ink-muted leading-relaxed">{f.desc}</p>
           </div>
@@ -674,11 +697,7 @@ function CodeTabsSection() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`text-left px-4 py-3 sm:px-5 sm:py-4 transition-all whitespace-nowrap lg:whitespace-normal shrink-0 border-b-2 lg:border-b-0 lg:border-l-2 ${
-                activeTab === tab.id 
-                  ? 'border-accent bg-accent/10 text-ink font-semibold' 
-                  : 'border-transparent text-ink-muted hover:border-border hover:text-ink hover:bg-black/5'
-              }`}
+              className={getTabButtonClasses(activeTab === tab.id)}
             >
               {tab.name}
             </button>
